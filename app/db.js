@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
+const { isValidISBN } = require("./Validation/ISBN_validation");
 
 // const users = [
 //   {
@@ -7,21 +8,46 @@ const { v4: uuidv4 } = require("uuid");
 //   },
 // ];
 
+// const bookid = uuidv4();
+
+// const newBook = {
+//   id: bookid,
+// };
+// const bookRating = {
+//   bookId: bookid,
+// };
+
 const books = [
   {
     id: 1234,
     title: "wings of fire",
-    year: 2000,
+    isbn: "007462542X",
   },
 ];
 
-const booksRatings = [
-  {
-    id: 200,
-    ratings: 4,
-    bookId: 1234,
-    // userId: 100,
-  },
-];
+// const booksRatings = [
+//   {
+//     id: 200,
+//     ratings: 4,
+//     bookId: 1234,
+//     // userId: 100,
+//   },
+// ];
 
-const getAllMovies = () => books.booksDetails.id;
+const getAllBooks = () => books;
+const addBook = ({ title, isbn }) => {
+  if (isValidISBN(isbn)) {
+    const id = uuidv4();
+    const b = {
+      id,
+      title,
+      isbn,
+    };
+    books.push(b);
+    return b;
+  } else console.log("Invalid");
+};
+module.exports = {
+  getAllBooks,
+  addBook,
+};
